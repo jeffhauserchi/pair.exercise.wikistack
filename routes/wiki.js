@@ -6,16 +6,13 @@ wikiRoute
   .route('/')
   .get((req, res, next) => {})
   .post(async (req, res, next) => {
-    res.send(req.body);
     console.log(req.body);
-
     const page = new Page({
       title: req.body.title,
       content: req.body.content,
-      slug: 'test',
       status: req.body.status,
     });
-
+    console.log(page);
     try {
       await page.save();
       res.redirect('/');
