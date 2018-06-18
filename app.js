@@ -26,8 +26,8 @@ const init = async () => {
   db.authenticate().then(() => {
     console.log('connected to the database');
   });
-  await User.sync();
-  await Page.sync();
+  await User.sync({ force: true });
+  await Page.sync({ force: true });
 
   app.listen(PORT, () => {
     console.log(`listening on ${PORT}`);

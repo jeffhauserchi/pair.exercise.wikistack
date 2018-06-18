@@ -4,8 +4,11 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {
 });
 
 const validateSlug = str => {
-  return str.replace(/\s+/g, '_').replace(/\W/g, '').replace('add','__add_i_');
-}
+  return str
+    .replace(/\s+/g, '_')
+    .replace(/\W/g, '')
+    .replace('add', '__add_i_');
+};
 
 const Page = db.define('page', {
   title: {
@@ -43,8 +46,6 @@ const User = db.define('user', {
   },
 });
 
-function createSlug(str) {
-  return;
-}
+Page.belongsTo(User, { as: 'author' });
 
 module.exports = { db, Page, User };
